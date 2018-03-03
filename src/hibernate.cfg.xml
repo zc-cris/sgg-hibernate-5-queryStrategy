@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    
+    	<!-- 配置连接数据库的基本信息 -->
+    	<property name="connection.username">root</property>
+    	<property name="connection.password">123456</property>
+    	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    	<property name="connection.url">jdbc:mysql:///hibernate5</property>
+    
+    	<!-- 配置hibernat的基本信息 -->
+    	<!-- hibernate 所使用的数据库方言 -->
+    	<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+    	<!-- 执行操作时，是否在控制台打印sql语句 -->
+    	<property name="show_sql">true</property>
+    	<!-- 是否对sql语句进行格式化显示 -->
+    	<property name="format_sql">true</property>
+    	<!-- 制定自动生成数据表的策略，即程序运行可以在数据库自动生成数据表 -->
+    	<property name="hbm2ddl.auto">update</property>
+    	<!-- 删除对象对应的数据后，使这个对象的OID为null -->
+    	<property name="use_identifier_rollback">true</property>
+    	
+    	<!-- 配置c3p0数据库连接池 -->
+    	<!-- 数据库连接池的最大连接数 -->
+    	<property name="c3p0.max_size">10</property>
+    	<!-- 数据库连接池的最小连接数 -->
+    	<property name="c3p0.min_size">5</property>
+    	<!-- 当数据库连接池中的连接耗尽时, 同一时刻获取多少个数据库连接 -->
+    	<property name="c3p0.acquire_increment">2</property>
+    	
+    	<!-- 表示连接池检测线程多长时间检测一次池内的所有链接对象是否超时. 
+    	连接池本身不会把自己从连接池中移除，而是专门有一个线程按照一定的时间间隔来做这件事，
+    	这个线程通过比较连接对象最后一次被使用时间和当前时间的时间差来和 timeout 做对比，进而决定是否销毁这个连接对象
+    	-->
+    	<property name="c3p0.idle_test_period">2000</property>
+    	<!-- 数据库连接池中连接对象在多长时间没有使用过后，就应该被销毁 -->
+    	<property name="c3p0.timeout">2000</property>
+    	<!-- 缓存 Statement 对象的数量 -->
+    	<property name="c3p0.max_statements">10</property>
+    	
+    	<!-- 引入对象关系映射文件   -->
+    	
+    	<mapping resource="com/zc/cris/n21/both/Customer.hbm.xml"/>
+    	<mapping resource="com/zc/cris/n21/both/Order.hbm.xml"/>
+    	
+    	</session-factory>
+</hibernate-configuration>
